@@ -1,0 +1,88 @@
+Assignment 16 Solutions
+1. Explain the Activation Functions in your own language
+a) Sigmoid: The sigmoid activation function squeezes the input values between 0 and 1. It maps any real number to a value between 0 and 1, which is useful for problems where we need to predict probabilities. However, the sigmoid function can cause the vanishing gradient problem and is not commonly used in deep neural networks nowadays.
+
+b) Tanh: The tanh (hyperbolic tangent) activation function also squeezes the input values, but this time between -1 and 1. It is an improved version of the sigmoid function because it is zero-centered, which helps the learning process in neural networks. Like the sigmoid function, tanh can still suffer from the vanishing gradient problem.
+
+c) ReLU: The Rectified Linear Unit (ReLU) activation function is widely used in deep learning. It returns the input as is if it is positive, and 0 if it is negative. ReLU helps with the vanishing gradient problem and speeds up the convergence during training. However, ReLU can also suffer from the "dying ReLU" problem, where neurons can get stuck in the negative side and stop learning.
+
+d) ELU: The Exponential Linear Unit (ELU) activation function is an improved version of ReLU. It has the same positive behavior as ReLU, but for negative input values, it smoothly approaches a negative saturation value instead of being exactly 0. ELU can help mitigate the dying ReLU problem and is robust to noisy inputs.
+
+e) LeakyReLU: Leaky Rectified Linear Unit (LeakyReLU) is another variation of the ReLU activation function. It allows a small, non-zero gradient for negative input values, which helps with the dying ReLU problem. By introducing a small slope for negative values, LeakyReLU enables learning even when the neuron is not active.
+
+f) Swish: The Swish activation function is a self-gated variant of the ReLU function. It performs a smooth mapping by multiplying the input by a sigmoid function. Swish combines the benefits of ReLU and the sigmoid function, leading to improved performance in some cases.
+
+2. What happens when you increase or decrease the optimizer learning rate?
+When you increase the learning rate of an optimizer, the convergence during training may happen faster. However, a high learning rate can also lead to overshooting the optimal solution, causing the loss to oscillate or diverge. It might prevent the model from finding the global minimum and result in unstable training.
+
+On the other hand, when you decrease the learning rate, the convergence might be slower, but it can allow the model to reach a more accurate and stable solution. A lower learning rate helps in fine-tuning the model by taking smaller steps towards the minimum loss. However, setting the learning rate too low may cause the training process to become very slow or get stuck in a local minimum.
+
+Finding the right learning rate is crucial for effective training. It often requires experimentation and tuning to determine an appropriate learning rate that balances convergence speed and stability.
+
+3. What happens when you increase the number of internal hidden neurons?
+Increasing the number of internal hidden neurons in a neural network allows the model to capture more complex patterns and representations in the data. With more hidden neurons, the network gains higher capacity to learn intricate relationships and make finer distinctions.
+
+However, increasing the number of hidden neurons also leads to a larger model, which requires more computational resources and training data. If the number of hidden neurons becomes too large relative to the available training data, overfitting can occur. Overfitting happens when the model becomes too specialized to the training data and fails to generalize well to unseen data.
+
+The optimal number of hidden neurons depends on the complexity of the problem and the amount of available data. It is often determined through experimentation and validation to strike a balance between model capacity and generalization.
+
+4. What happens when you increase the size of batch computation?
+In deep learning, the size of the batch, also known as the batch size, determines the number of training examples processed before updating the model's parameters. Increasing the batch size can have the following effects:
+
+Faster training: Larger batch sizes can speed up the training process since more examples are processed in parallel. This can be beneficial when training on powerful hardware like GPUs, as they can efficiently perform computations in parallel.
+
+Smoothing of the gradient: Increasing the batch size can lead to a smoother estimate of the gradient, as it is calculated based on a larger number of samples. This can help in cases where the individual gradients from small batches are noisy or volatile.
+
+Reduced generalization: Larger batch sizes may result in a reduction in generalization performance. Smaller batch sizes provide more frequent updates to the model's parameters, allowing it to explore the parameter space more thoroughly. Larger batches, on the other hand, can lead to suboptimal solutions as the model might get stuck in flat regions of the loss landscape.
+
+Choosing the right batch size depends on factors such as the available computational resources, the dataset size, and the specific problem at hand. It often involves a trade-off between training speed and generalization performance.
+
+5. Why do we adopt regularization to avoid overfitting?
+Regularization is adopted in machine learning, including deep learning, to mitigate overfitting. Overfitting occurs when a model becomes too complex and starts to memorize the training data instead of learning the underlying patterns that generalize well to unseen data. Regularization techniques help prevent overfitting by adding additional constraints or penalties to the model during training.
+
+The main reason we adopt regularization is to encourage the model to have simpler or smoother solutions. By introducing regularization, we penalize complex or extreme parameter values, reducing the model's ability to fit noise or irrelevant details in the training data. Regularization techniques can constrain the model's capacity, control the weights' magnitude, or enforce sparsity in the model's parameters.
+
+Common regularization techniques in deep learning include L1 and L2 regularization (weight decay), dropout, and early stopping. These techniques effectively reduce overfitting by discouraging complex or overconfident models and promoting generalization to unseen data.
+
+6. What are loss and cost functions in deep learning?
+In deep learning, loss and cost functions are used to measure the difference between the predicted output of a neural network and the true (target) output. These functions quantify the model's performance and guide the learning process during training.
+
+Loss function: The loss function, also known as the objective function or error function, measures the error between the predicted output and the true output for a single training example. It quantifies how well the model is currently performing on individual samples. The choice of loss function depends on the specific problem and the type of output the model is generating. For example, in binary classification problems, the binary cross-entropy loss is commonly used, while mean squared error (MSE) loss is used for regression tasks.
+
+Cost function: The cost function, also referred to as the objective function or average loss, computes the average loss over the entire training dataset. It summarizes the overall performance of the model across all training examples. The cost function is the quantity that is minimized during the training process to update the model's parameters. The cost function is typically an aggregate or average of the individual loss values calculated by the loss function for each training example.
+
+The choice of loss and cost functions depends on the specific problem, the type of output, and the desired properties of the model. It is essential to select appropriate loss and cost functions that align with the learning objectives and evaluation metrics of the task at hand.
+
+7. What do you mean by underfitting in neural networks?
+Underfitting refers to a situation in which a neural network fails to capture the underlying patterns and relationships present in the training data. An underfit model exhibits high bias, which means it is too simple or lacks the capacity to learn the complexity of the data.
+
+Signs of underfitting include:
+
+High training error: The model struggles to fit the training data well, resulting in a high error or poor performance on the training set itself.
+
+High validation error: The model also performs poorly on the validation or test data, indicating its inability to generalize to unseen examples.
+
+Underfitting can occur when the model is too shallow (has too few layers or hidden units) or when it is trained for too short a time. It can also happen if the data is too complex for the chosen model architecture or if there is insufficient training data.
+
+To address underfitting, you can try the following steps:
+
+Increase model capacity: Add more layers, increase the number of hidden units, or use more complex architectures to allow the model to learn more intricate relationships in the data.
+
+Increase training time: Train the model for a longer duration, allowing it to see more examples and converge to a better solution.
+
+Collect more data: If possible, acquire more training data to provide a richer and more diverse set of examples for the model to learn from.
+
+Finding the right balance between model complexity, training duration, and data availability is crucial to avoid underfitting and achieve good generalization performance.
+
+8. Why do we use Dropout in Neural Networks?
+Dropout is a regularization technique commonly used in neural networks to prevent overfitting. It randomly sets a fraction of the neurons' outputs to zero during each training step, effectively "dropping out" those neurons. This means that these neurons do not contribute to the forward pass or backward pass during that particular training step.
+
+By applying dropout, the network becomes less reliant on specific neurons and learns more robust and generalized representations. Dropout helps to prevent overfitting by:
+
+Reducing interdependence: Dropout forces the network to learn more redundant representations by spreading the information across different sets of neurons. This reduces the interdependence between neurons and prevents them from relying too heavily on a few dominant features.
+
+Creating an ensemble effect: During training, dropout can be seen as training multiple sub-networks with shared parameters. At inference time, the ensemble effect is approximated by scaling the weights of the remaining neurons. This averaging effect can improve generalization and reduce the sensitivity to individual neurons.
+
+Regularizing the model: Dropout introduces noise in the training process, which acts as a form of regularization. It helps in preventing the model from memorizing the training data and encourages it to learn more robust and generalizable features.
+
+Dropout is a powerful technique to improve the generalization performance of neural networks and is widely used in practice. It is typically applied to the fully connected layers of the network and can be combined with other regularization techniques for even better results.
